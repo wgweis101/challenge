@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Williams Sonoma Challenge</title>
+    <script src="rcs/lib/1.2.1/angular.min.js"></script>
+    <script src="rcs/js/app.js"></script>
+    <style>
+        #informationals {
+            color: green;
+        }
+        #warnings {
+            color: darkorange;
+        }
+        #errors {
+            color: red;
+        }
+
+        resultData
+    </style>
+</head>
+<body ng-app="wsApp" ng-controller="wsController">
+
+<div id="messages">
+    <div id="informationals" class="fieldContainer" style="width: 100%;display:none;" ng-show="informationals.length > 0">
+        <div class="ui-messages-info ui-corner-all"><span class="ui-messages-info-icon"></span>
+            <ul>
+                <div ng-repeat="infomessage in informationals">
+                    <li><span class="ui-messages-info-summary">{{ infomessage.message }}</span></li>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div id="warnings" class="fieldContainer" style="width: 100%;display:none;" ng-show="warnings.length > 0">
+        <div class="ui-messages-warn ui-corner-all"><span class="ui-messages-warn-icon"></span>
+            <ul>
+                <div ng-repeat="warnmessage in warnings">
+                    <li><span class="ui-messages-warn-summary">{{ warnmessage.message }}</span></li>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <div id="errors" class="fieldContainer" style="width: 100%;display:none;" ng-show="errors.length > 0">
+        <div class="ui-messages-error ui-corner-all"><span class="ui-messages-error-icon"></span>
+            <ul>
+                <div ng-repeat="errormessage in errors">
+                    <li><span class="ui-messages-error-summary">{{ errormessage.message }}</span></li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<form>
+    <table>
+    <tr>
+        <td>
+            <span style="vertical-align: top;">Reduction Data String:&nbsp;</span>
+        </td>
+        <td rowspan="2">
+            <textarea name="rd" id="id" rows="2" cols="90" ng-model="reductionData">The cat was playing in the garden.</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td><input type="submit" name="Submit Data" ng-click="submitData()"></td>
+    </tr>
+    </table>
+</form>
+
+<h1>Current Result for Request submitted: {{resultData}}</h1>
+<div ng-repeat="dataElement in resultDataElements">
+    <li><span class="ui-messages-info-summary">{{ dataElement }}</span></li>
+</div>
+
+
+</body>
+</html>
